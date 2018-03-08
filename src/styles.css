@@ -1,1 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+/*Dropdown*/
+.pure-menu {
+	height: 54px;
+	padding: 0 5px;
+	z-index: 9999;
+
+	opacity: 0.2;
+	transition: opacity 1s ease;
+}
+.pure-menu-active {
+	opacity: 1;
+}
+.pure-menu * {
+	z-index: 9990;
+}
+
+.pure-menu .pure-menu-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	position: relative;
+	height: inherit;
+}
+	
+.pure-menu .pure-menu-list .pure-menu-item {
+	display: inline-block;
+	background-color: #535353;
+}
+
+.pure-menu > .pure-menu-list {
+	line-height: 54px;
+	margin: 0 0 0 10px;
+}
+
+.pure-menu-button {
+	width: 100%;
+	color: white;
+	display:block;
+	padding:0 10px;	
+	font-size: 20px;
+	text-align: left;
+	height: inherit;
+	text-decoration:none;
+	border: none;
+	background-color: transparent;
+}
+/* Hide Dropdowns by Default */
+.pure-menu .pure-menu-list .pure-menu-list {
+	display: none;
+	position: absolute; 
+	top: 54px; /* the height of the main pure-menu */
+}
+.pure-menu .pure-menu-list .pure-menu-list .pure-menu-button {
+	font-size: 18px;
+}
+
+/* Display Dropdowns on Hover */
+.pure-menu-active .pure-menu-list .pure-menu-item:hover > .pure-menu-list {
+	display: inherit;
+}
+
+.pure-menu-has-children > .pure-menu-button:after {
+    padding-left: 0.5em;
+    content: "\25B8";
+}
+
+.pure-menu-active .pure-menu-list .pure-menu-item:hover > .pure-menu-has-children > .pure-menu-button:after {
+	content: "\25BE";
+}
+
+	
+/* Fisrt Tier Dropdown */
+.pure-menu .pure-menu-list .pure-menu-list .pure-menu-item {
+	height: 44px;
+	width: 180px;
+	line-height: 44px;
+	float: none;
+	display: list-item;
+	position: relative;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(160, 160, 160, 0.6);
+}
+.pure-menu .pure-menu-list .pure-menu-list .pure-menu-item:last-child {
+    border-bottom: none;
+}
+
+/* Second, Third and more Tiers	*/
+.pure-menu .pure-menu-list .pure-menu-list .pure-menu-list .pure-menu-item {
+	position: relative;
+	top: -54px; 
+	left: 180px;
+}

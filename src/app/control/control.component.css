@@ -1,0 +1,19 @@
+:host {
+	z-index: 9999;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.menu-bar {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	background-color: #535353;
+}
+.menu-bar-title {
+	margin-right: 20px;
+	line-height: 54px;
+	font-size: 24px;
+	font-weight: bold;
+	font-family: Helvetica;
+	color: white;
+	text-shadow: 0px 0px 24px rgba(255, 255, 255, 0.4);
+}
