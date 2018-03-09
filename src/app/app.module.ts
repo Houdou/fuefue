@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { FueControlComponent } from './pages/control/control.component';
 import { FueDrawingComponent } from './pages/drawing/drawing.component';
 
-import { FueAudioService } from './services/audio.service';
+import { FueAudioService } from './services/audio/audio.service';
 
 @NgModule({
 	declarations: [
@@ -17,7 +17,9 @@ import { FueAudioService } from './services/audio.service';
 	imports: [
 		BrowserModule
 	],
-	providers: [],
+	providers: [
+		FueAudioService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
