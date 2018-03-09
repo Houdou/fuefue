@@ -1,15 +1,15 @@
 <div class="menu-bar">
     <nav class="pure-menu" [ngClass]="{'pure-menu-active': menuOperable}">
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="menuOperable && Emit('ResetTune')">Reset tune</button></li>
-            <!-- <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                <button href="#" id="menuLink1" class="pure-menu-button">File</button>
+            <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="menuOperable && Emit('SaveTune')">Save Wav</button></li>
+            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                <button href="#" id="menuLink1" class="pure-menu-button">Project</button>
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('SaveContour')">Save contour</button></li>
-                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('SaveMask')">Save mask</button></li>
+                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('SaveProject')">Save</button></li>
+                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('LoadProject')">Load</button></li>
                 </ul>
             </li>
-            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <!-- <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                 <button href="#" id="menuLink2" class="pure-menu-button">Display</button>
                 <ul class="pure-menu-list">
                     <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('DisplayImage')">Image only</button></li>

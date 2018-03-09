@@ -108,9 +108,9 @@ export class FueDrawingComponent implements OnInit {
 				// TODO: Create model
 				// TOOD: Bind events
 				if(Math.random() < 0.8)
-					cell.graphics.f('#888888').drawRoundRectComplex(0, 0, cellSize, cellSize, cellRadius, 0, 0, 0);
+					cell.graphics.f('#888888').drawRoundRectComplex(0, 0, cellSize, cellSize, cellRadius, 0, cellRadius, 0);
 				else
-					cell.graphics.f('#FBEF98').drawRoundRectComplex(0, 0, cellSize, cellSize, cellRadius, 0, 0, 0);
+					cell.graphics.f('#FBEF98').drawRoundRectComplex(0, 0, cellSize, cellSize, cellRadius, 0, cellRadius, 0);
 				cell.x = padding + (cellSize + spacing) * u;
 				cell.y = padding + (cellSize + spacing) * v;
 				c.addChild(cell);

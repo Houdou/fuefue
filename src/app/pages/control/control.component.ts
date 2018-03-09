@@ -12,7 +12,7 @@ export class FueControlComponent implements OnInit {
 	@Output()
 	public onMenuFunction = new EventEmitter<object>();
 
-	public menuOperable: boolean = false;
+	public menuOperable: boolean = true;
 	
 	constructor() { }
 
