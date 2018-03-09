@@ -1,10 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 import { FueAudioPlayback } from './audio-playback';
 
 @Injectable()
-export class FueAudioService {
-	constructor(private playback: FueAudioPlayback) {
+export class FueAudioService implements OnInit {
+	private playback: FueAudioPlayback;
+	
+	constructor() {
+		
+	}
+
+	ngOnInit() {
 		this.playback = new FueAudioPlayback();
 	}
 }

@@ -90,7 +90,7 @@ export class FueAudioPlayback {
 		bufferReference.set(dataReference.slice(dataOffset, end), bufferOffset);
 	};
 
-	public Play(audioDataRef, sampleRate, start, end): void {
+	public Play(audioDataRef, sampleRate: number, start?: number, end?: number): void {
 		// Check if already playing or no data was given
 		if (this.isPlaying || audioDataRef === undefined || audioDataRef.length < 1 || sampleRate === undefined || sampleRate <= 0) {
 			return;

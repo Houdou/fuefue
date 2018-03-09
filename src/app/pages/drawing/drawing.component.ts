@@ -61,6 +61,7 @@ export class FueDrawingComponent implements OnInit {
 	ngAfterViewInit() {
 		this.canvas = this.canvasRef.nativeElement;
 		this.setupCanvas();
+		this.createBeatMesh();
 	}
 
 	private setupCanvas(): void {
@@ -81,7 +82,8 @@ export class FueDrawingComponent implements OnInit {
 		this.stage.update();
 	}
 
-	private createBeatMesh(length: number): void {
+	private createBeatMesh(length: number = 16): void {
+		let c = new createjs.Container();
 
 	}
 }

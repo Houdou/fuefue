@@ -1,9 +1,11 @@
 import { FueChannel } from './audio-channel';
 import { FueAudioPlayback } from './audio-playback';
+import { FueWaveTrack } from './wave-track';
 
 export class FueAudioControl {
 	// This function object set up the <audiocontroller> element
 	private audioPlayback: FueAudioPlayback;
+	private audioController: FueAudioControl;
 
 	public listOfChannels: Array<FueChannel>;
 
@@ -60,31 +62,31 @@ export class FueAudioControl {
 
 	// Create a new channel with specific name
 	public CreateChannel(name): FueChannel {
-		if(this.audioController.containsChannel(name) === true) return undefined;
+		if(this.ContainsChannel(name) === true) return undefined;
 
 		var channelElement = document.createElement("channel");
 		channelElement.title = name;
-		this.appendChild(channelElement);
+		this.elementContext.appendChild(channelElement);
 		var obj = new FueChannel(channelElement);
-		this.audioController.addChannel(obj);
+		this.AddChannel(obj);
 		return obj;
 	};
 
 	// Remove all channels that are added to this audio control
-	public RemoveAllChannels(): void {
-		for(var i = 0; i < this.children.length; ++i) {
-			if(this.children[i].nodeName.toLowerCase() == "channel") {
-				this.audioController.removeChannel(this.children[i].Channel);
-				this.removeChild(this.children[i]);
-				--i;
-			}
-		}
-	};
+	// public RemoveAllChannels(): void {
+	// 	for(var i = 0; i < this.elementContext.children.length; ++i) {
+	// 		if(this.elementContext.children[i].nodeName.toLowerCase() == "channel") {
+	// 			this.audioController.RemoveChannel(this.elementContext.children[i].Channel);
+	// 			this.elementContext.removeChild(this.elementContext.children[i]);
+	// 			--i;
+	// 		}
+	// 	}
+	// };
 
 	// Play the audio
 	public Play(): void {
 		// Stop, if any, the currently playing audio
-		this.audioController.audioPlayback.stop();
+		this.audioController.audioPlayback.Stop();
 
 		// Prepare the audio sequences information
 		var sampleRate = this.audioController.listOfChannels[0].audioSequenceReference.sampleRate;
@@ -94,37 +96,37 @@ export class FueAudioControl {
 		}
 
 		// Pass the audio sequences information to the audio playback handler
-		this.audioController.audioPlayback.play(audioDataRefs, sampleRate);
+		this.audioController.audioPlayback.Play(audioDataRefs, sampleRate);
 	};
 
 	// Stop the aduio playback
 	public Stop(): void {
-		this.audioController.audioPlayback.stop();
+		this.audioController.audioPlayback.Stop();
 	};
 
-	// Update the download link
-	public UpdateDownloadLink(saveLink): void {
-		var url = this.ToWave().toBlobUrlAsync("application/octet-stream");
-		$(savelink).attr("href", url);
-		var fileName = currentWaveformType + "-" + $("#waveform-frequency").val() + "hz";
-		for(i = 1; i <= currentEffects.length; ++i) {
-			fileName += "-pp" + i + "-" + currentEffects[i - 1];
-		}
-		fileName += ".wav"
-		$(savelink).attr("download", fileName);
-	};
+	// // Update the download link
+	// public UpdateDownloadLink(saveLink): void {
+	// 	var url = this.ToWave().toBlobUrlAsync("application/octet-stream");
+	// 	$(savelink).attr("href", url);
+	// 	var fileName = currentWaveformType + "-" + $("#waveform-frequency").val() + "hz";
+	// 	for(i = 1; i <= currentEffects.length; ++i) {
+	// 		fileName += "-pp" + i + "-" + currentEffects[i - 1];
+	// 	}
+	// 	fileName += ".wav"
+	// 	$(savelink).attr("download", fileName);
+	// };
 
-	// Update the download MIDI music link
-	public UpdateDownloadMidiLink(saveMidiLink): void {
-		var url = this.ToWave().toBlobUrlAsync("application/octet-stream");
-		$(saveMidiLink).attr("href", url);
-		var fileName = "midi-music-" + currentWaveformType;
-		for(i = 1; i <= currentEffects.length; ++i) {
-			fileName += "-pp" + i + "-" + currentEffects[i - 1];
-		}
-		fileName += ".wav"
-		$(saveMidiLink).attr("download", fileName);
-	};
+	// // Update the download MIDI music link
+	// public UpdateDownloadMidiLink(saveMidiLink): void {
+	// 	var url = this.ToWave().toBlobUrlAsync("application/octet-stream");
+	// 	$(saveMidiLink).attr("href", url);
+	// 	var fileName = "midi-music-" + currentWaveformType;
+	// 	for(i = 1; i <= currentEffects.length; ++i) {
+	// 		fileName += "-pp" + i + "-" + currentEffects[i - 1];
+	// 	}
+	// 	fileName += ".wav"
+	// 	$(saveMidiLink).attr("download", fileName);
+	// };
 
 	// Export to WAV format
 	public ToWave(): FueWaveTrack {

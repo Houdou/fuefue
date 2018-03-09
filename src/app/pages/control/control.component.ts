@@ -12,9 +12,22 @@ export class FueControlComponent implements OnInit {
 	@Output()
 	public onMenuFunction = new EventEmitter<object>();
 
+	public menuOperable: boolean = false;
+	
 	constructor() { }
 
 	ngOnInit() {
+	}
+
+	private Emit(eventName: string):void {
+		let event: any = {};
+		event.name = eventName;
+		this.onMenuFunction.emit(event);
+	}
+
+	public Reset(): void {
+		this.menuOperable = false;
+		// TODO: Reset menubar status (modes)
 	}
 
 }

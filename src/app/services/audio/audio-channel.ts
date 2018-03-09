@@ -1,36 +1,43 @@
-import { WaveformGenerator } from './wave-generator';
 import { FueAudioSequence } from './audio-sequence';
+import { FueAudioControl } from './audio-control';
+
+import { WaveformGenerator } from './wave-generator';
 
 export class FueChannel {
 	// This function object represent a single channel
 	public sampleRate: number = 0;
 	public title: string;
+
+	private elementContext: HTMLElement;
+	public audioController: FueAudioControl;
+	public audioSequenceReference: FueAudioSequence;
+
 	// Visually it is the waveform display of the audio sequence data of this channel
-	constructor(elementContext) {
+	constructor(elementContext: HTMLElement) {
 		this.elementContext = elementContext;
-		this.elementContext.channel = this;
+		// this.elementContext.channel = this;
 
 		// References to the elements
 		this.audioController = undefined; // The <audiocontroller> this channel is attached to
 		this.audioSequenceReference = undefined; // The audio sequence data this channel stores
 
 		// Data points used for drawing the waveform display
-		this.visualizationData = [];
+		// this.visualizationData = [];
 		// Scan for attributes during the creation
-		if((typeof this.elementContext.attributes.title !== undefined) && this.elementContext.attributes.title !== null) {
-			this.title = this.elementContext.attributes.title.value;
+		if((typeof this.elementContext.attributes['title'] !== undefined) && this.elementContext.attributes['title'] !== null) {
+			this.title = this.elementContext.attributes['title'].value;
 		}
 	}
 	
 	// Assign a new audio sequence data to this channel
-	this.setAudioSequence = function setAudioSequence(newAudioSequenceReference) {
+	public SetAudioSequence(newAudioSequenceReference): void {
 		this.audioSequenceReference = newAudioSequenceReference;
-		this.updateVisualizationData();
-	};
+		// this.updateVisualizationData();
+	}
 
 
 	// Find the minimum and maximum values in a given time frame
-	this.getPeakInFrame = function getPeakInFrame(from, to, data) {
+	public GetPeakInFrame(from, to, data): any {
 		var fromRounded = Math.round(from); // This should be integer
 		var toRounded = Math.round(to); // This should be integer
 		var min = 1.0; // Set a high enough value for the minimum
@@ -45,24 +52,24 @@ export class FueChannel {
 		}
 
 		return { min : min, max : max };
-	};
+	}
 
 	// Convert from samples to seconds
-	this.getSampleToSeconds = function getSampleToSeconds(sampleIndex) {
+	public GetSampleToSeconds(sampleIndex) {
 		return sampleIndex / this.sampleRate;
-	};
+	}
 
 	// Convert from seconds to samples
-	this.getSecondsToSample = function getSecondsToSample(seconds) {
+	public GetSecondsToSample(seconds): number {
 		return seconds * this.sampleRate;
-	};
+	}
 
 	// Generate a new waveform according to the parameters
-	this.generateWaveform = function generateWaveform() {
+	public GenerateWaveform(type: string, freq: number, stereoPosition: number, duration: number) {
 		// Gather the basic parameters
-		var selectedWaveType = currentWaveformType;
-		var freq = parseInt($("#waveform-frequency").val());
-		var stereoPosition = parseFloat($("#waveform-position").val());
+		// var selectedWaveType = type;
+		// var freq = parseInt($("#waveform-frequency").val());
+		// var stereoPosition = parseFloat($("#waveform-position").val());
 
 		// Adjust the maximum amplitude of this channel
 		var amp = 1.0;
@@ -73,16 +80,16 @@ export class FueChannel {
 		}
 
 		// Show the information of what is being generated in the console
-		console.log(this.title + ": Generating waveform of type '" + selectedWaveType + "' with frequency " + freq + "Hz and amplitude " + amp);
+		console.log(this.title + ": Generating waveform of type '" + type + "' with frequency " + freq + "Hz and amplitude " + amp);
 
 		// Generate the audio samples data
-		var newWaveformAudioSequence = WaveformGenerator.GenerateWaveform(selectedWaveType, freq, amp, duration);
+		var newWaveformAudioSequence = WaveformGenerator.GenerateWaveform(type, freq, amp, duration);
 
 		// Create a AudioSequence object with the audio samples data
 		var newAudioSequenceReference = new FueAudioSequence(this.sampleRate, newWaveformAudioSequence);
 
 		// Attach the newly created AudioSequence to this channel
-		this.setAudioSequence(newAudioSequenceReference);
+		this.SetAudioSequence(newAudioSequenceReference);
 	};
 
 }

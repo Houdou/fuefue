@@ -1,0 +1,32 @@
+<div class="wrapper">
+	<div class="playback" [ngClass]="{'isPlaying':isPlaying, 'isPausing': !isPlaying}" (click)="onPlaybackButton($event)">
+		<div class="play-icon">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="playIconSvg" x="0px" y="0px" viewBox="0 0 430 430" xml:space="preserve" width="28px" height="28px">
+				<defs><filter id="playShadow" height="130%">
+					<feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+					<feOffset dx="30" dy="20" result="offsetblur"/>
+					<feComponentTransfer>
+						<feFuncA type="linear" slope="0.2"/>
+					</feComponentTransfer>
+					<feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+				</filter></defs>
+				<path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697    c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z" filter="url(#playShadow)"/>
+			</svg>
+		</div>
+		<div class="pause-icon">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="pauseIconSvg" x="0px" y="0px" viewBox="0 0 555 555" xml:space="preserve" width="28px" height="28px">
+				<defs><filter id="pauseShadow" height="130%">
+					<feGaussianBlur in="SourceAlpha" stdDeviation="20"/>
+					<feOffset dx="50" dy="40" result="offsetblur"/>
+					<feComponentTransfer>
+						<feFuncA type="linear" slope="0.25"/>
+					</feComponentTransfer>
+					<feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+				</filter></defs>
+				<path d="M231.6,516.278c0,10.658-8.641,19.3-19.3,19.3H106.15c-10.659,0-19.3-8.641-19.3-19.3V19.3     c0-10.659,8.641-19.3,19.3-19.3h106.15c10.659,0,19.3,8.641,19.3,19.3V516.278z" filter="url(#pauseShadow)"/>
+				<path d="M448.728,516.278c0,10.658-8.641,19.3-19.3,19.3h-106.15c-10.659,0-19.3-8.641-19.3-19.3V19.3     c0-10.659,8.641-19.3,19.3-19.3h106.15c10.659,0,19.3,8.641,19.3,19.3V516.278z" filter="url(#pauseShadow)"/>
+			</svg>
+		</div>
+	</div>
+	<div class="bg"></div>
+</div>

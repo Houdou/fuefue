@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FueControlComponent } from './pages/control/control.component';
+import { FuePlaybackComponent } from './pages/control/playback.component';
 import { FueDrawingComponent } from './pages/drawing/drawing.component';
 
 import { FueAudioService } from './services/audio/audio.service';
@@ -12,7 +13,8 @@ import { FueAudioService } from './services/audio/audio.service';
 	declarations: [
 		AppComponent,
 		FueControlComponent,
-		FueDrawingComponent
+		FueDrawingComponent,
+		FuePlaybackComponent
 	],
 	imports: [
 		BrowserModule

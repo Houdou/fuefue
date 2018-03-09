@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { FueAudioService } from './services/audio.service';
+import { FueAudioService } from './services/audio/audio.service';
 
 @Component({
 	selector: 'app-root',
@@ -12,5 +12,14 @@ export class AppComponent {
 
 	constructor(private audio: FueAudioService) {
 
+	}
+
+	private HandleMenu(event: any): void {
+		console.log(event.name);
+
+		switch (event.name) {
+			default:
+				break;
+		}
 	}
 }

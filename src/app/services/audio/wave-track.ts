@@ -3,7 +3,7 @@ const signedBorders = [0, 0xFF - 0x80, 0xFFFF - 0x8000, 0xFFFFFFFFF - 0x80000000
 import { BinaryReader, BinaryWriter } from '../binary-helper';
 import { FueAudioSequence } from './audio-sequence';
 
-export class WaveTrack {
+export class FueWaveTrack {
 	// This function object read and write WAV format file
 	// public sampleRate: number = 0;
 	public audioSequences: Array<FueAudioSequence>;
