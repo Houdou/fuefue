@@ -1,5 +1,10 @@
+import { WaveformGenerator } from './wave-generator';
+import { FueAudioSequence } from './audio-sequence';
+
 export class FueChannel {
 	// This function object represent a single channel
+	public sampleRate: number = 0;
+	public title: string;
 	// Visually it is the waveform display of the audio sequence data of this channel
 	constructor(elementContext) {
 		this.elementContext = elementContext;
@@ -44,12 +49,12 @@ export class FueChannel {
 
 	// Convert from samples to seconds
 	this.getSampleToSeconds = function getSampleToSeconds(sampleIndex) {
-		return sampleIndex / sampleRate;
+		return sampleIndex / this.sampleRate;
 	};
 
 	// Convert from seconds to samples
 	this.getSecondsToSample = function getSecondsToSample(seconds) {
-		return seconds * sampleRate;
+		return seconds * this.sampleRate;
 	};
 
 	// Generate a new waveform according to the parameters
@@ -71,10 +76,10 @@ export class FueChannel {
 		console.log(this.title + ": Generating waveform of type '" + selectedWaveType + "' with frequency " + freq + "Hz and amplitude " + amp);
 
 		// Generate the audio samples data
-		var newWaveformAudioSequence = WaveformGenerator.generateWaveform(selectedWaveType, freq, amp, duration);
+		var newWaveformAudioSequence = WaveformGenerator.GenerateWaveform(selectedWaveType, freq, amp, duration);
 
 		// Create a AudioSequence object with the audio samples data
-		var newAudioSequenceReference = new CreateNewAudioSequence(newWaveformAudioSequence);
+		var newAudioSequenceReference = new FueAudioSequence(this.sampleRate, newWaveformAudioSequence);
 
 		// Attach the newly created AudioSequence to this channel
 		this.setAudioSequence(newAudioSequenceReference);

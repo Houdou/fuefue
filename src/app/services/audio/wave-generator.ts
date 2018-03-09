@@ -1,6 +1,6 @@
 import { Utils } from './audio-utils';
 
-export class WaveGenerator {
+export class WaveformGenerator {
 	// This object represent the waveform generator
 
     // The generateWaveform function takes 4 parameters:
