@@ -1,7 +1,7 @@
 :host {
 	position: absolute;
-	right: 36px;
-	bottom: 36px;
+	right: 80px;
+	bottom: 80px;
 }
 .wrapper {
 	position: relative;
@@ -9,18 +9,13 @@
 .playback {
 	z-index: 9999;
 	position: absolute;
-	width: 48px;
-	height: 48px;
-}
-.playback svg {
-	fill: #FBB565;
+	width: 64px;
+	height: 64px;
 }
 .play-icon {
-	padding: 10px 8px 10px 12px;
 	display: none;
 }
 .pause-icon {
-	padding: 10px;
 	display: none;
 }
 .isPlaying .pause-icon {
@@ -30,8 +25,11 @@
 	display: inherit;
 }
 
-.bg {
-	/*overflow: hidden;*/
+/*.playback svg {
+	fill: #FBB565;
+}*/
+/*.bg {
+	overflow: hidden;
 	border-radius: 100%;
 	height: 48px;
 	width: 48px;
@@ -40,25 +38,25 @@
 	background-color: #FBEF98;
 }
 .bg:before {
-    content: "";
-    position: absolute;
-    bottom: 19.5px;
-    margin-left: calc(24px - 6px);
-    margin-bottom: 19.5px;
-    box-sizing: content-box;
-    border: solid 6px #FBEF98;
-    border-radius: 100%;
-    transform: scaleY(1.1);
+	content: "";
+	position: absolute;
+	bottom: 19.5px;
+	margin-left: calc(24px - 6px);
+	margin-bottom: 19.5px;
+	box-sizing: content-box;
+	border: solid 6px #FBEF98;
+	border-radius: 100%;
+	transform: scaleY(1.1);
 }
 .bg:after {
-    content: "";
-    position: absolute;
-    top: 19.5px;
-    margin-left: calc(24px - 6px);
-    margin-top: 19.5px;
-    box-sizing: content-box;
-    border: solid 6px #FBEF98;
-    
-    border-radius: 100%;
-    transform: scaleY(1.1);
-}
+	content: "";
+	position: absolute;
+	top: 19.5px;
+	margin-left: calc(24px - 6px);
+	margin-top: 19.5px;
+	box-sizing: content-box;
+	border: solid 6px #FBEF98;
+	
+	border-radius: 100%;
+	transform: scaleY(1.1);
+}*/

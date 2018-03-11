@@ -33,7 +33,7 @@ export class AppComponent {
 	}
 
 	ngAfterViewInit() {
-		this.CreateTrack(this.drawing.canvas, TuneType.Poko);
+		this.CreateTrack(this.drawing.canvas, TuneType.Piro);
 	}
 
 	public CreateTrack(canvasRef: HTMLCanvasElement, type: TuneType = TuneType.Piko): void {

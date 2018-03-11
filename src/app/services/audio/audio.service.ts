@@ -48,7 +48,7 @@ export class FueAudioService implements OnInit {
 			})
 		})
 		setTimeout(() => {
-			this.tracks[0].Play();
+			// this.tracks[0].Play();
 		}, 1000);
 	}
 
