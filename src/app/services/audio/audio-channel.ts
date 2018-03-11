@@ -1,24 +1,25 @@
+import { TuneType } from '../../models/tune';
+
 import { FueAudioSequence } from './audio-sequence';
-import { FueAudioControl } from './audio-control';
+import { FueTrack } from './audio-track';
 
 import { WaveformGenerator } from './wave-generator';
 
 export class FueChannel {
 	// This function object represent a single channel
-	public sampleRate: number = 0;
 	public title: string;
 
 	private elementContext: HTMLElement;
-	public audioController: FueAudioControl;
+	public controller: FueTrack;
 	public audioSequenceReference: FueAudioSequence;
 
 	// Visually it is the waveform display of the audio sequence data of this channel
-	constructor(elementContext: HTMLElement) {
+	constructor(elementContext: HTMLElement, public sampleRate: number = 44100) {
 		this.elementContext = elementContext;
 		// this.elementContext.channel = this;
 
 		// References to the elements
-		this.audioController = undefined; // The <audiocontroller> this channel is attached to
+		this.controller = undefined; // The <audiocontroller> this channel is attached to
 		this.audioSequenceReference = undefined; // The audio sequence data this channel stores
 
 		// Data points used for drawing the waveform display
@@ -65,28 +66,29 @@ export class FueChannel {
 	}
 
 	// Generate a new waveform according to the parameters
-	public GenerateWaveform(type: string, freq: number, stereoPosition: number, duration: number) {
+	public GenerateWaveform(type: TuneType, freq: number, stereoPosition: number, duration: number, sampleRate: number) {
 		// Gather the basic parameters
 		// var selectedWaveType = type;
 		// var freq = parseInt($("#waveform-frequency").val());
 		// var stereoPosition = parseFloat($("#waveform-position").val());
 
 		// Adjust the maximum amplitude of this channel
-		var amp = 1.0;
-		if(this.title === "Left Channel") {
+		let amp = 1.0;
+		if(this.title === "Left") {
 			amp *= (1 - stereoPosition);
 		} else {
 			amp *= stereoPosition;
 		}
 
 		// Show the information of what is being generated in the console
-		console.log(this.title + ": Generating waveform of type '" + type + "' with frequency " + freq + "Hz and amplitude " + amp);
+		console.log(`${this.title}: Generating waveform ${duration}s of type ${type} with frequency ${freq}Hz and amplitude ${amp}`)
+		// console.log(this.title + ": Generating waveform of type '" + type + "' with frequency " + freq + "Hz and amplitude " + amp);
 
 		// Generate the audio samples data
-		var newWaveformAudioSequence = WaveformGenerator.GenerateWaveform(type, freq, amp, duration);
+		let newWaveformAudioSequence = WaveformGenerator.GenerateWaveform(type, freq, amp, duration, sampleRate);
 
 		// Create a AudioSequence object with the audio samples data
-		var newAudioSequenceReference = new FueAudioSequence(this.sampleRate, newWaveformAudioSequence);
+		let newAudioSequenceReference = new FueAudioSequence(this.sampleRate, newWaveformAudioSequence);
 
 		// Attach the newly created AudioSequence to this channel
 		this.SetAudioSequence(newAudioSequenceReference);

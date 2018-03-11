@@ -31,7 +31,7 @@ export class FueWaveTrack {
 		this.audioSequences = sequences;
 	};
 
-	public ToBlobUrlAsync(encoding, asyncMethod, host): string {
+	public ToBlobUrlAsync(encoding, asyncMethod?, host?): string {
 		var encodedWave = this.EncodeWaveFile();
 
 		var blob = new Blob([encodedWave], {type: encoding});

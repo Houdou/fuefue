@@ -11,7 +11,7 @@ export class FueDrawingComponent implements OnInit {
 	@ViewChild("canvas")
 	private canvasRef: ElementRef;
 
-	private canvas: HTMLCanvasElement;
+	public canvas: HTMLCanvasElement;
 	private stage: createjs.Stage;
 
 	public handleUpload: boolean = true;

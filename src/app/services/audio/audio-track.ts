@@ -1,15 +1,17 @@
+import { TuneType } from '../../models/tune';
 import { FueChannel } from './audio-channel';
 import { FueAudioPlayback } from './audio-playback';
 import { FueWaveTrack } from './wave-track';
 
-export class FueAudioControl {
+export class FueTrack {
 	// This function object set up the <audiocontroller> element
 	private audioPlayback: FueAudioPlayback;
-	private audioController: FueAudioControl;
 
 	public listOfChannels: Array<FueChannel>;
 
-	constructor(private elementContext: HTMLElement) {
+	public pan: number = 0.5;
+
+	constructor(private elementContext: HTMLElement, public type: TuneType, public sampleRate: number = 44100) {
 		this.elementContext = elementContext; // The context of the hosting element
 		// this.elementContext.audioController = this; // Export this
 		this.listOfChannels = []; // List of channels of this audio controller
@@ -73,40 +75,44 @@ export class FueAudioControl {
 	};
 
 	// Remove all channels that are added to this audio control
-	// public RemoveAllChannels(): void {
-	// 	for(var i = 0; i < this.elementContext.children.length; ++i) {
-	// 		if(this.elementContext.children[i].nodeName.toLowerCase() == "channel") {
-	// 			this.audioController.RemoveChannel(this.elementContext.children[i].Channel);
-	// 			this.elementContext.removeChild(this.elementContext.children[i]);
-	// 			--i;
-	// 		}
-	// 	}
-	// };
+	public RemoveAllChannels(): void {
+		for(let c in this.listOfChannels) {
+			delete this.listOfChannels[c];
+		}
+
+		this.listOfChannels = new Array<FueChannel>();
+		// for(var i = 0; i < this.elementContext.children.length; ++i) {
+		// 	if(this.elementContext.children[i].nodeName.toLowerCase() == "channel") {
+		// 		this.audioController.RemoveChannel(this.elementContext.children[i].Channel);
+		// 		this.elementContext.removeChild(this.elementContext.children[i]);
+		// 		--i;
+		// 	}
+		// }
+	};
 
 	// Play the audio
 	public Play(): void {
 		// Stop, if any, the currently playing audio
-		this.audioController.audioPlayback.Stop();
+		this.audioPlayback.Stop();
 
 		// Prepare the audio sequences information
-		var sampleRate = this.audioController.listOfChannels[0].audioSequenceReference.sampleRate;
-		var audioDataRefs = [];
-		for(var i = 0; i < this.audioController.listOfChannels.length; ++i) {
-			audioDataRefs.push(this.audioController.listOfChannels[i].audioSequenceReference.data);
+		let audioDataRefs = [];
+		for(var i = 0; i < this.listOfChannels.length; ++i) {
+			audioDataRefs.push(this.listOfChannels[i].audioSequenceReference.data);
 		}
 
 		// Pass the audio sequences information to the audio playback handler
-		this.audioController.audioPlayback.Play(audioDataRefs, sampleRate);
+		this.audioPlayback.Play(audioDataRefs, this.sampleRate);
 	};
 
 	// Stop the aduio playback
 	public Stop(): void {
-		this.audioController.audioPlayback.Stop();
+		this.audioPlayback.Stop();
 	};
 
-	// // Update the download link
-	// public UpdateDownloadLink(saveLink): void {
-	// 	var url = this.ToWave().toBlobUrlAsync("application/octet-stream");
+	// Update the download link
+	public UpdateDownloadLink(saveLink): string {
+		var url = this.ToWave().ToBlobUrlAsync("application/octet-stream");
 	// 	$(savelink).attr("href", url);
 	// 	var fileName = currentWaveformType + "-" + $("#waveform-frequency").val() + "hz";
 	// 	for(i = 1; i <= currentEffects.length; ++i) {
@@ -114,7 +120,8 @@ export class FueAudioControl {
 	// 	}
 	// 	fileName += ".wav"
 	// 	$(savelink).attr("download", fileName);
-	// };
+		return url;
+	};
 
 	// // Update the download MIDI music link
 	// public UpdateDownloadMidiLink(saveMidiLink): void {
@@ -133,8 +140,8 @@ export class FueAudioControl {
 		var wave = new FueWaveTrack();
 
 		var sequenceList = [];
-		for(var i = 0; i < this.audioController.listOfChannels.length; ++i) {
-			sequenceList.push(this.audioController.listOfChannels[i].audioSequenceReference);
+		for(var i = 0; i < this.listOfChannels.length; ++i) {
+			sequenceList.push(this.listOfChannels[i].audioSequenceReference);
 		}
 
 		wave.fromAudioSequences(sequenceList);

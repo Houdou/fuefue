@@ -5,6 +5,7 @@ export class FueAudioSequence {
 
 	constructor(public sampleRate: number, data?: Array<number>) {
 		this.gain = 0.0;
+		this.data = new Array<number>();
 
 		if (data !== undefined) {
 			for(var i = 0; i < data.length; ++i) {

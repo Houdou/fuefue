@@ -29,21 +29,20 @@ export class FueAudioPlayback {
 	constructor() {
 		this.audioContext  = new AudioContext();
 		this.javaScriptNode = this.audioContext.createScriptProcessor(this.audioBufferSize, 1, 2);
-		this.javaScriptNode.onaudioprocess = this.onAudioUpdate;
+		this.javaScriptNode.onaudioprocess = (evt) => {
+			this.onAudioUpdate(evt);
+		};
 		// this.javaScriptNode.eventHost = this;
 	}	
 
-	private onAudioUpdate(evt): void {
-		// var audioPlayback = this;
-		// var bufferSize = audioPlayback.audioBufferSize;
-
+	private onAudioUpdate(evt: AudioProcessingEvent): void {
 		// Return if playback was stopped
 		if (this.isPlaying === false) return;
 
 		// Reference to the audio data arrays and audio buffer
-		var audioData = this.audioDataRef;
-		var leftBuffer = evt.outputBuffer.getChannelData(0);
-		var rightBuffer = evt.outputBuffer.getChannelData(1);
+		let audioData = this.audioDataRef;
+		let leftBuffer = evt.outputBuffer.getChannelData(0);
+		let rightBuffer = evt.outputBuffer.getChannelData(1);
 
 		if (audioData.length == 1) { // Mono
 			this.copyChannelDataToBuffer(leftBuffer, audioData[0], this.currentPlayPosition, this.audioBufferSize, this.playStart, this.playEnd);
