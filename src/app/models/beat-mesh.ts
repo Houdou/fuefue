@@ -3,8 +3,8 @@ export class BeatMesh<T> {
 	private grid: Array<T>;
 
 	constructor(public Rows: number, public Columns: number, initialValue: T) {
-		let grid = new Array<T>(Rows * Columns);
-		grid.forEach(u => u = initialValue);
+		this.grid = new Array<T>(Rows * Columns);
+		this.grid.forEach(u => u = initialValue);
 	}
 
 	public Clone(cloneFunction: (value: T, i: number, arr: Array<T>) => T): Array<T> {
@@ -48,7 +48,7 @@ export class BeatMesh<T> {
 		return changed;
 	}
 
-	public Map(x: number, y: number, MapFunction: (x: number, y: number, i: number, arr: Array<T>) => T): BeatMesh<T> {
+	public Map(MapFunction: (x: number, y: number, i: number, arr: Array<T>) => T): BeatMesh<T> {
 		for(let v = 0; v < this.Rows; ++v) {
 			for(let u = 0; u < this.Columns; ++u) {
 				this.grid[v * this.Columns + u] = MapFunction(u, v, v * this.Columns + u, this.grid);
