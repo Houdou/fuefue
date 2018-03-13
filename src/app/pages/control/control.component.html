@@ -1,19 +1,19 @@
 <div class="menu-bar">
     <nav class="pure-menu" [ngClass]="{'pure-menu-active': menuOperable}">
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="menuOperable && Emit('SaveTune')">Export Wav</button></li>
+            <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="menuOperable && Emit('SaveTune')">EXPORT WAV</button></li>
             <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                <button href="#" id="menuLink1" class="pure-menu-button">Project</button>
+                <button href="#" id="menuLink1" class="pure-menu-button">PROJECT</button>
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('SaveProject')">Save</button></li>
-                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('LoadProject')">Load</button></li>
+                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('SaveProject')">SAVE</button></li>
+                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('LoadProject')">LOAD</button></li>
                 </ul>
             </li>
             <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                <button href="#" id="menuLink2" class="pure-menu-button">Playback</button>
+                <button href="#" id="menuLink2" class="pure-menu-button">PLAYBACK</button>
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('PlayPause')">Play/Pause</button></li>
-                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('Stop')">Stop</button></li>
+                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('PlayPause')">PLAY/PAUSE</button></li>
+                    <li class="pure-menu-item"><button href="#" class="pure-menu-button" (click)="Emit('Stop')">STOP</button></li>
                 </ul>
             </li>
             <!-- <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
