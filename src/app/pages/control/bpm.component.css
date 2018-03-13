@@ -1,0 +1,38 @@
+:host {
+	height: 100%;
+	min-width: 350px;
+}
+.wrapper {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+label, .value, .operator {
+	color: white;
+	font-family: acecx;
+	font-size: 28px; 
+	line-height: 54px;
+}
+.slider {
+	height: 54px;
+	min-width: 220px;
+	width: auto;
+	vertical-align: top;
+	-webkit-appearance: none;
+}
+.slider:focus {
+	outline: none;
+}
+.slider::-webkit-slider-thumb {
+	height: 100%;
+	width: 0.25em;
+	background: #FFFFFF;
+	box-shadow: 0px 0px 2px 0px rgba(255, 255, 255, 0.6);
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+.slider::-webkit-slider-runnable-track {
+	height: 100%;
+	background-color: #777777;
+	border: none;
+}

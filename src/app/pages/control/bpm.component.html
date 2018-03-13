@@ -1,0 +1,5 @@
+<div class="wrapper">
+	<label>BPM: </label>
+	<input type="range" min="30" max="180" step="1" class="slider" [(value)]="bpm" (input)="OnUpdateSlider($event)">
+	<span class="operator" (click)="decreaseBPM($event)">- </span><span class="value">{{bpm | number:'3.0'}}</span><span class="operator" (click)="increaseBPM($event)"> +</span>
+</div>
