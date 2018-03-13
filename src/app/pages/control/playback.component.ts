@@ -18,6 +18,7 @@ export class FuePlaybackComponent implements OnInit {
 
 	onPlaybackButton(event: MouseEvent): void {
 		this.OnPlaybackButton.emit();
+		this.isPlaying = !this.isPlaying;
 	}
 
 }
