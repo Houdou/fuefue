@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AudioService } from './audio.service';
+import { FueAudioService } from './audio.service';
 
-describe('AudioService', () => {
+describe('FueAudioService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AudioService]
+      providers: [FueAudioService]
     });
   });
 
-  it('should be created', inject([AudioService], (service: AudioService) => {
+  it('should be created', inject([FueAudioService], (service: FueAudioService) => {
     expect(service).toBeTruthy();
   }));
 });

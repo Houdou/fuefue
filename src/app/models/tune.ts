@@ -15,3 +15,9 @@ export class Tune {
 
 	}
 }
+
+export class FreqHelper {
+	static NoteFreq(note: number) {
+		return 440.0 * 2**((note - 69)/12);
+	}
+}

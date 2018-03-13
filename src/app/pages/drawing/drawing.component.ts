@@ -1,6 +1,18 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener, EventEmitter, Output } from '@angular/core';
+import { BeatMesh } from '../../models/beat-mesh';
+
 
 import * as createjs from 'createjs-module';
+
+export class BeatCell {
+	public IsEnabled: boolean = false;
+
+	constructor(public x: number, public y: number) {
+
+	}
+
+
+}
 
 @Component({
 	selector: 'fue-drawing',
@@ -16,6 +28,8 @@ export class FueDrawingComponent implements OnInit {
 
 	public handleUpload: boolean = true;
 	private imageLoaded: boolean = false;
+
+	private mesh: BeatMesh<BeatCell>;
 
 	private _scale : number = 1;
 	public get scale() : number {
