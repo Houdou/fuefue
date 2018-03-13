@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('./assets/acecx.css');
+
 * {
 	margin: 0;
 	padding: 0;
@@ -34,10 +36,21 @@
 	display: inline-block;
 	background-color: #535353;
 }
+.pure-menu > .pure-menu-list > .pure-menu-item:before {
+	content: '/';
+	position: absolute;
+	margin-left: -8px;
+	color: white;
+	font-family: acecx;
+	font-size: 28px;
+	transform: scaleY(1.5);
+}
+.pure-menu > .pure-menu-list > .pure-menu-item:first-child:before {
+	content: '';
+}
 
 .pure-menu > .pure-menu-list {
 	line-height: 54px;
-	margin: 0 0 0 10px;
 }
 
 .pure-menu-button {
@@ -48,9 +61,21 @@
 	font-size: 20px;
 	text-align: left;
 	height: inherit;
+
+	font-family: acecx;
+	line-height: 0px;
+	font-size: 20pt;
+
 	text-decoration:none;
 	border: none;
 	background-color: transparent;
+}
+.pure-menu-button:focus {
+	outline: none;
+}
+.pure-menu-button:hover {
+	background-color: #FBEF98;
+	color: #F36C21;
 }
 /* Hide Dropdowns by Default */
 .pure-menu .pure-menu-list .pure-menu-list {
@@ -68,12 +93,12 @@
 }
 
 .pure-menu-has-children > .pure-menu-button:after {
-    padding-left: 0.5em;
-    content: "\25B8";
+    padding-left: 0.1em;
+    content: "+";
 }
 
-.pure-menu-active .pure-menu-list .pure-menu-item:hover > .pure-menu-has-children > .pure-menu-button:after {
-	content: "\25BE";
+.pure-menu-active .pure-menu-has-children:hover > .pure-menu-button:after {
+	content: ".";
 }
 
 	

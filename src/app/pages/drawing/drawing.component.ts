@@ -163,7 +163,7 @@ export class FueDrawingComponent implements OnInit {
 				this.stage.update();
 				console.log(u, v);
 
-				console.log(this.mesh.GetColumn(u).map(cell => cell.IsEnabled));
+				// console.log(this.mesh.GetColumn(u).map(cell => cell.IsEnabled));
 			}
 
 			// DEBUG
